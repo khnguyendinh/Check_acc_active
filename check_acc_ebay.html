@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Check trạng thái Ebay acc</title>
+    <meta charset="utf-8" />
+    <meta name="keywords" content="It, it solution,solution, techonogy,internet" />
+    <script type="text/javascript" src="../check_acc_ebay/jquery-3.4.1.min.js"></script>
+    <link rel="stylesheet" href="../check_acc_ebay/bootstrap-table-v16/dist/bootstrap-table.css">
+    <script type="text/javascript" src="../check_acc_ebay/bootstrap-table-v16/dist/bootstrap-table.js"></script>
+    <script type="text/javascript" src="../check_acc_ebay/bootstrap-table-v16/dist/extensions/editable/bootstrap-table-editable.js"></script>
+    <script src="https://unpkg.com/tableexport.jquery.plugin@1.10.1/tableExport.min.js"></script>
+    <script type="text/javascript" src="../check_acc_ebay/bootstrap-table-v16/dist/extensions/export/bootstrap-table-export.js"></script>
+    <script type="text/javascript" src="../check_acc_ebay/bootstrap-table-v16/dist/extensions/editable/bootstrap-table-editable.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.8.0/jszip.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.8.0/xlsx.js"></script>
+    <script type="text/javascript" src="../check_acc_ebay/xlsx.full.min.js_0.15.6/cdnjs/xlsx.full.min.js"></script>
+    <script src="https://www.promisejs.org/polyfills/promise-done-7.0.4.min.js"></script>
+    <style>
+        html *
+        {
+            font-size: 1em !important;
+            color: #000 !important;
+            font-family: Arial !important;
+        }
+        .print-table {
+            overflow: visible;
+            width:100%;
+        }
+
+        .print-table th,
+        .print-table td {
+            background: #fff;
+        }
+        .print-table > thead > tr > th{
+            background: none !important;
+        }
+        .print-table th,
+        .print-table td {
+            border:0px !important;
+            white-space: normal;
+            color: #000 !important;
+
+            border-top: 1px solid #000 !important;
+        }
+
+
+        h2 {
+            font-size: 14pt;
+        }
+
+        h1,
+        h2,
+        h3 {
+            line-height: 1.2;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            margin: 0px;
+        }
+
+        body {
+            background: #f6f6f6;
+        }
+
+        .k-widget {
+            font-family: "Arial";
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            border: 0;
+            outline: 0;
+            list-style: none;
+            font-size: 100%;
+            vertical-align: baseline;
+            background: transparent;
+            text-decoration: none;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-weight: normal;
+            color: #000;
+            font-family: "Arial";
+            font-size: 13pt;
+        }
+
+        .page-print,
+        .page-template {
+            max-width: 210mm;
+            margin: 0px auto;
+            padding: 2cm 2cm 3cm 2cm;
+            background: #fff;
+            font-family: "Arial";
+        }
+
+        @media print {}
+
+        p {
+            line-height: 1.3;
+        }
+
+        .f14 {
+            font-size: 14pt;
+        }
+
+        .bold {
+            font-weight: bold;
+        }
+
+        .center {
+            text-align: center;
+        }
+
+        .upper {
+            text-transform: uppercase;
+        }
+
+        .print-table {
+            margin-bottom: 6pt;
+            width: 100%;
+            border-spacing: 0;
+            border-collapse: collapse;
+        }
+
+        .print-table td {
+            border: 1px solid #000 !important;
+            padding-bottom: 6pt;
+            padding-right: 6pt;
+        }
+        .print-table th{
+            border:1px solid #000 !important;
+        }
+        h2 {
+            font-size: 13pt;
+        }
+
+        .sp-key {
+            width: 60px;
+        }
+
+        .logo img {
+            width: 60px;
+        }
+
+        .print-table .no-bor td {
+            border: 0px !important;
+        }
+
+        .print-table .vcenter td {
+            vertical-align: middle;
+        }
+
+
+        .left {
+            float: left;
+        }
+        p{
+            margin: 0px;
+            margin-bottom: 6pt;
+        }
+
+        @media print {
+            .head-action {
+
+                display: none;
+            }
+        }
+
+        .k-grid {
+            font-family: "Arial", sans-serif;
+        }
+        .subtop{
+            position: relative;
+            top: -5px;
+            font-size: 11px;
+            font-weight: normal;
+        }
+        .table th,
+        .table td {
+            padding: 5px 5px !important;
+        }
+        .table td:last-child{
+            text-align: left;
+        }
+        .table {
+            overflow: visible;
+            width:100%;
+            margin-bottom: 0px !important;
+        }
+
+        .table th,
+        .table td {
+            background: #fff;
+            table-layout: fixed;
+        }
+
+        .table th,
+        .table td {
+            border:0px !important;
+            border-top: 1px solid #000 !important;
+            word-wrap: break-word;
+        }
+        .table {
+
+            width: 100%;
+            border-spacing: 0;
+            border-collapse: collapse;
+            /*margin-bottom: 7px;*/
+        }
+
+        .table td {
+            border: 1px solid #000 !important;
+            padding: 3px 3px !important;
+            padding-right: 7px !important;
+        }
+        .table th{
+            border:1px solid #000 !important;
+        }
+        .table .no-bor td {
+            border: 0px !important;
+            padding: 3px 0px !important;
+        }
+
+        .table .vcenter td {
+            vertical-align: middle;
+        }
+        .table td:last-child{
+            text-align: left;
+        }
+        .btn-custom {
+            border: 1px solid #13559F;
+            color: #13559F;
+            padding: 7px 15px;
+            min-width: 120px;
+            height: 36px;
+            display: inline-block;
+            margin-bottom: 0;
+            font-size: 14px;
+            font-weight: 400;
+            line-height: 1.42857143;
+            text-align: center;
+            white-space: nowrap;
+            vertical-align: middle;
+            -ms-touch-action: manipulation;
+            touch-action: manipulation;
+            cursor: pointer;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            background-image: none;
+            border-radius: 4px;
+        }
+        .btn-custom:hover {
+            background: #13559F !important;
+            color: #fff !important;
+        }
+        /*input[type="file"] {*/
+        /*    z-index: -1;*/
+        /*    position: absolute;*/
+        /*    opacity: 0;*/
+        /*}*/
+
+        /*input:focus + label {*/
+        /*    outline: 2px solid;*/
+        /*}*/
+    </style>
+</head>
+<body class="">
+<br>
+    <form >
+        <label for="file_upload">Chọn 1 File excel có các acc :</label>
+        <input id="file_upload"  type="file" onchange="ExcelToJSON()"
+               accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel">
+        <label id="file_upload_filename"></label>
+    </form>
+
+
+</body>
+<script>
+    var input;
+    var infoArea_input;
+    var all_acc_ebay;
+    $(document).ready(function () {
+         input = document.getElementById( 'file_upload' );
+         infoArea_input = document.getElementById( 'file_upload_filename' );
+        // input.addEventListener( 'change', ExcelToJSON, false);
+        console.log('ssss');
+    });
+    function choose_file() {
+        // ('#file_upload').click();
+        var  element = HTMLElement = document.getElementById( 'file_upload' );
+        element.click();
+    }
+    // document.getElementById('myfile').onchange = function () {
+    //     // alert('Selected file: ' + this.value);
+    //     ('#path_file').text = this.value;
+    // };
+
+    function ExcelToJSON(oEvent) {
+
+        // Get The File From The Input
+        var oFile = input.files[0];
+        // Create A File Reader HTML5
+        var reader = new FileReader();
+
+        // Ready The Event For When A File Gets Selected
+        reader.onload = function(e) {
+            var data = e.target.result;
+            data = new Uint8Array(data);
+            var workbook = XLSX.read(data, {type: 'array'});
+            // console.log(workbook);
+            var result = {};
+            var roa = XLSX.utils.sheet_to_json(workbook.Sheets[workbook.SheetNames[0]], {header: 1});
+            if (roa.length) result = roa;
+            console.log(result);
+            var array_object = [];
+            for(var i = 0;i < result.length;i++ ){
+                var object_json = new Object();
+                object_json.acc_ebay_username = result[i][0];
+                object_json.status = 'OK';
+                // object_json.status = check_account_active(object_json.acc_ebay_username );
+                array_object.push(object_json);
+            }
+            all_acc_ebay = array_object;
+            get_data_all_acc();
+            // create_excel_file(array_object);
+        };
+
+        // Tell JS To Start Reading The File.. You could delay this if desired
+        reader.readAsArrayBuffer(oFile);
+    };
+    function create_excel_file(jsonOPbject) {
+        var createXLSLFormatObj = [];
+
+        /* XLS Head Columns */
+        var xlsHeader = ["ACC_EBAY", "Trạng thái"];
+
+        /* XLS Rows Data */
+        var xlsRows = jsonOPbject;
+        console.log('jsonOPbject', jsonOPbject);
+        createXLSLFormatObj.push(xlsHeader);
+        $.each(xlsRows, function(index, value) {
+            var innerRowData = [];
+            $("tbody").append('<tr><td>' + value.acc_ebay_username + '</td><td>' + value.status + '</td></tr>');
+            $.each(value, function(ind, val) {
+
+                innerRowData.push(val);
+            });
+            createXLSLFormatObj.push(innerRowData);
+        });
+
+
+        /* File Name */
+        var filename = "Acc_ebay_XLS.xlsx";
+
+        /* Sheet Name */
+        var ws_name = "Trạng thái acc ebay";
+
+        if (typeof console !== 'undefined') console.log(new Date());
+        var wb = XLSX.utils.book_new(),
+            ws = XLSX.utils.aoa_to_sheet(createXLSLFormatObj);
+
+        /* Add worksheet to workbook */
+        XLSX.utils.book_append_sheet(wb, ws, ws_name);
+
+        /* Write workbook and Download */
+        if (typeof console !== 'undefined') console.log(new Date());
+        XLSX.writeFile(wb, filename);
+        if (typeof console !== 'undefined') console.log(new Date());
+        $('#file_upload').val('')
+    }
+    function get_data_all_acc() {
+        const promises = [];
+        for (let i = 0; i < all_acc_ebay.length; i++) {
+            promises.push( new Promise((resolve) => {
+                check_account_active(all_acc_ebay[i].acc_ebay_username,resolve,i);
+
+            }));
+        }
+        Promise.all(promises)
+            .then((results) => {
+                console.log("All done", results);
+                create_excel_file(all_acc_ebay);
+            })
+            .catch((e) => {
+                // Handle errors here
+                console.log("eror", e);
+            });
+    }
+    function check_account_active(acc_ebay,resolve ,index) {
+        var data_req = {};
+        var status_acc = '';
+        data_req.accept='text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9';
+        $.ajax({
+            type: 'GET',
+            url: 'https://www.ebay.com/usr/' + acc_ebay,
+            cache: false,
+            enctype: 'multipart/form-data',
+            processData: false,
+            contentType: false,
+            data: data_req,
+            success: function (response) {
+                console.log('response', acc_ebay);
+                if(response.includes('No longer a registered user')){
+                    status_acc= 'DEACTIVE';
+
+                }else if(response.includes('heartIcon')){
+                    status_acc = 'ACTIVE';
+                }else {
+                    status_acc = 'Chưa xác định';
+                }
+                resolve('ok');
+                console.log('status', status_acc);
+                all_acc_ebay[index].status = status_acc;
+                return status_acc;
+            },
+            error: function (error) {
+                console.log('error', error);
+                resolve('ok');
+                all_acc_ebay[index].status ='ERROR';
+                return 'ERROR';
+            }
+        });
+    }
+</script>
